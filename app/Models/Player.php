@@ -16,6 +16,7 @@ class Player extends Model
         'description',
         'vc_segment',
         'barangay_id',
+        'data_source',
     ];
 
     public function products(){

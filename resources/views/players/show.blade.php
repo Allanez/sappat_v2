@@ -47,8 +47,9 @@
                         <p>
                             {{$player->description}}
                         </p>
+                        <div><label> <strong>Data Sources:</strong> </label> {{$player->data_source}}</div>
                     </div>
-                    <div class="row business-relationships">
+                    <div class="row business-relationships mt-5">
                         <h5>Business Relationships</h5>
                         <hr>
                         <div class="business-partner">
