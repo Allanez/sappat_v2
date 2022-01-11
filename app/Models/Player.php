@@ -15,9 +15,20 @@ class Player extends Model
         'address',
         'description',
         'vc_segment',
+        'barangay_id',
     ];
 
     public function products(){
         return $this->hasMany(Product::class);
+    }
+
+    public function barangay(){
+        return $this->belongsTo(Barangay::class);
+    }
+
+    public function address(){
+        if($this->barangay){
+            return $this->barangay->name.", ".$this->barangay->municipality->name.", ".$this->barangay->municipality->province->name;
+        }
     }
 }

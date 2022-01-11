@@ -10,7 +10,7 @@
             <div class="col-md-8">
             <div>
                 <h5>
-                    <a href="{{ route('welcome')}}">Go Back to Search Results</a> 
+                    <a href="{{ route('dashboard')}}">Go Back to Search Results</a> 
                 </h5>
             </div>
             <div class="card">
@@ -34,7 +34,7 @@
                         </div>    
                     </div>
                     <div class="row player-details">
-                        <div><label> <strong>Location:</strong> </label> {{$player->address}}</div>
+                        <div><label> <strong>Location:</strong> </label> {{$player->address()}}</div>
                         <div><label> <strong>Products:</strong> </label> 
                             @foreach($player->products()->get() as $product)
                                 @if(!$loop->last)

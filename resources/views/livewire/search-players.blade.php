@@ -75,7 +75,7 @@
                 <li>
                     <div class="search-item">
                         <div class="player-name">
-                            <a href="{{route('players.show', $player->id)}}">{{$player->name}}</a> from <strong>{{$player->address}}</strong> 
+                            <a href="{{route('players.show', $player->id)}}">{{$player->name}}</a> from <strong>{{$player->address()}}</strong> 
                         </div>
                         <div class="player-segment {{$player->vc_segment}}">
                             {{$player->vc_segment}}

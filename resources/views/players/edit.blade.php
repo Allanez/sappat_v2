@@ -83,7 +83,7 @@
                                         <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Address') }}</label>
 
                                         <div class="col-md-6">
-                                            <textarea id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="address" rows="3">{{ $player->address}}</textarea>
+                                            <textarea id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="address" rows="3" disabled>{{ $player->address}}</textarea>
 
                                             @error('address')
                                                 <span class="invalid-feedback" role="alert">
@@ -92,6 +92,9 @@
                                             @enderror
                                         </div>
                                     </div>
+
+                                    @livewire('address-input', ['player'=> $player])
+
                                     <div class="row mb-3">
                                         <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Description') }}</label>
 
