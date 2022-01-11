@@ -6,7 +6,7 @@
     </x-slot>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header"><h4>{{ __('Update Player\'s Profile')}} - {{$player->name }}</h4></div>
 
@@ -17,6 +17,9 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Products & Services</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="equipment-tab" data-bs-toggle="tab" data-bs-target="#equipment" type="button" role="tab" aria-controls="equipment" aria-selected="false">Equipment/Technology</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Business Relationships</button>
@@ -147,6 +150,19 @@
                             @livewire('show-player-products', ['player' => $player])
                         </div>
                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+
+                        <div class="tab-pane fade" id="equipment" role="tabpanel" aria-labelledby="equipment-tab">
+                            <div class="row mt-3 justify-content-end">
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new_equipment">
+                                    Add Equipment
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            @livewire('equipment-form', ['player'=> $player])
+                            @livewire('show-player-equipments', ['player' => $player])
+                        </div>
                     </div>
                 </div>
             </div>

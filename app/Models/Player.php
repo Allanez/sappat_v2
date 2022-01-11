@@ -23,6 +23,10 @@ class Player extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function equipments(){
+        return $this->hasMany(Equipment::class);
+    }
+
     public function barangay(){
         return $this->belongsTo(Barangay::class);
     }
