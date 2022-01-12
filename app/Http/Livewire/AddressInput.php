@@ -51,6 +51,12 @@ class AddressInput extends Component
             $this->municipality = $barangay->municipality->id;
             $this->province = $barangay->municipality->province->id;
             $this->region = $barangay->municipality->province->region->id;
+        }elseif($this->player && $this->player->municipality){
+            $municipality = $this->player->municipality;
+            $this->municipality = $municipality->id;
+            $this->province = $municipality->province->id;
+            $this->region = $municipality->province->region->id;
+            $this->barangay_id = -1;
         }
     }
 }

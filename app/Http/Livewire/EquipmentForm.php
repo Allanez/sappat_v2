@@ -54,7 +54,7 @@ class EquipmentForm extends Component
     }
 
     public function mount(){
-        $this->status = 'operational';
+        $this->status = 'not indicated';
         $this->date_acquired = date('Y-m-d');
     }
 }

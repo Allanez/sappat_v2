@@ -115,7 +115,7 @@
                                         <label for="data_source" class="col-md-4 col-form-label text-md-end">{{ __('Data Source') }}</label>
 
                                         <div class="col-md-6">
-                                            <textarea id="data_source" type="text" class="form-control @error('data_source') is-invalid @enderror" name="data_source" required autocomplete="data_source" rows="3"></textarea>
+                                            <textarea id="data_source" type="text" class="form-control @error('data_source') is-invalid @enderror" name="data_source" required autocomplete="data_source" rows="3">{{$player->data_source}}</textarea>
 
                                             @error('data_source')
                                                 <span class="invalid-feedback" role="alert">

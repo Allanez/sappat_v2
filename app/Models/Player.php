@@ -17,6 +17,7 @@ class Player extends Model
         'vc_segment',
         'barangay_id',
         'data_source',
+        'municipality_id',
     ];
 
     public function products(){
@@ -31,9 +32,15 @@ class Player extends Model
         return $this->belongsTo(Barangay::class);
     }
 
+    public function municipality(){
+        return $this->belongsTo(Municipality::class);
+    }
+
     public function address(){
-        if($this->barangay){
+        if($this->barangay_id){
             return $this->barangay->name.", ".$this->barangay->municipality->name.", ".$this->barangay->municipality->province->name;
+        }elseif($this->municipality){
+            return $this->municipality->name.", ".$this->municipality->province->name;
         }
     }
 }

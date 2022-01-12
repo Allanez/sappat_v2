@@ -10,7 +10,7 @@ class ShowPlayerEquipments extends Component
     public $player;
     public $common_name;
     public $quantity;
-    public $date_acquired;
+    public $year_acquired;
     public $provider;
     public $status;
     public $remarks;
@@ -32,7 +32,7 @@ class ShowPlayerEquipments extends Component
     public function resetFields(){
         $this->common_name = '';
         $this->quantity='';
-        $this->date_acquired='';
+        $this->year_acquired='';
         $this->provider='';
         $this->status='';
         $this->remarks='';
@@ -52,7 +52,7 @@ class ShowPlayerEquipments extends Component
         $this->player->id = $equipment->player_id;
         $this->common_name =  $equipment->common_name;
         $this->quantity = $equipment->quantity;
-        $this->date_acquired = $equipment->date_acquired;
+        $this->year_acquired = $equipment->year_acquired;
         $this->provider = $equipment->provider;
         $this->status = $equipment->status;
         $this->remarks = $equipment->remarks;
@@ -67,7 +67,7 @@ class ShowPlayerEquipments extends Component
             $product->update([
                 'common_name' => $this->common_name,
                 'quantity' => $this->quantity,
-                'date_acquired' => $this->date_acquired,
+                'year_acquired' => $this->year_acquired,
                 'provider' => $this->provider,
                 'status' => $this->status,
                 'remarks' => $this->remarks,

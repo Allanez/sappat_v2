@@ -24,7 +24,6 @@
 
         <div class="col-md-6">
             <select id="province" wire:model="province" name="province" class="form-select" type="text" aria-label="Province Label">
-                <option selected>Select Province</option>
                 @foreach($provinces as $province)
                     <option value="{{$province->id}}">{{$province->name}}</option>
                 @endforeach
@@ -43,8 +42,8 @@
         <label for="municipality" class="col-md-4 col-form-label text-md-end">{{ __('Municipality') }}</label>
 
         <div class="col-md-6">
-            <select id="municipality" wire:model="municipality" name="municipality" class="form-select" type="text" aria-label="Province Label">
-                <option selected>Select Municipality</option>
+            <select id="municipality" wire:model="municipality" name="municipality_id" class="form-select" type="text" aria-label="Province Label">
+                
                 @foreach($municipalities as $municipality)
                     <option value="{{$municipality->id}}">{{$municipality->name}}</option>
                 @endforeach
@@ -64,7 +63,7 @@
 
         <div class="col-md-6">
             <select wire:model="barangay_id" type="text" class="form-select" name="barangay_id" aria-label="Barangay Label">
-                <option selected>Select Barangay</option>
+                <option selected value="-1">Not Indicated</option>
                 @foreach($barangays as $barangay)
                     <option value="{{$barangay->id}}">{{$barangay->name}}</option>
                 @endforeach

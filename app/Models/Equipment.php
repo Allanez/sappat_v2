@@ -15,7 +15,7 @@ class Equipment extends Model
         'provider',
         'quantity',
         'status',
-        'date_acquired',
+        'year_acquired',
     ];
 }
 

@@ -29,8 +29,8 @@
                 @enderror
             </div>
             <div class="col-auto">
-                <label for="date_acquired" class="col-form-label text-md-end">{{ __('Date Acquired') }}</label>
-                <input id="date_acquired" wire:model="date_acquired"  type="text" class="form-control @error('date_acquired') is-invalid @enderror" name="date_acquired" value="{{ old('date_acquired') }}" required autocomplete="date_acquired" autofocus>
+                <label for="year_acquired" class="col-form-label text-md-end">{{ __('Year Acquired') }}</label>
+                <input id="year_acquired" wire:model="year_acquired"  type="text" class="form-control @error('date_acquired') is-invalid @enderror" name="year_acquired" value="{{ old('year_acquired') }}" required autocomplete="year_acquired" autofocus>
                 @error('date_acquired')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -51,6 +51,7 @@
                 <select wire:model="status" type="text" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" required autocomplete="status">
                     <option value="operational">Operational</option>
                     <option value="non-operational">Not Operational</option>
+                    <option value="not indicated">Not Indicated</option>
                 </select>
                 @error('provider')
                     <span class="invalid-feedback" role="alert">

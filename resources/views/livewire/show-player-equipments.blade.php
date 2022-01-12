@@ -5,7 +5,7 @@
         <th scope="col">#</th>
         <th scope="col">Common Name</th>
         <th scope="col">No. of Units</th>
-        <th scope="col">Date Acquired</th>
+        <th scope="col">Year Acquired</th>
         <th scope="col">Name of Provider</th>
         <th scope="col">Status</th>
         <th scope="col">Remarks</th>
@@ -18,7 +18,7 @@
             <th scope="row">{{$loop->index}}</th>
             <td>{{$equipment->common_name}}</td>
             <td>{{$equipment->quantity}}</td>
-            <td>{{$equipment->date_acquired}}</td>
+            <td>{{$equipment->year_acquired}}</td>
             <td>{{$equipment->provider}}</td>
             <td>{{$equipment->status}}</td>
             <td>{{$equipment->remarks}}</td>
@@ -62,9 +62,9 @@
                 @enderror
             </div>
             <div class="col-auto">
-                <label for="date_acquired2" class="col-form-label text-md-end">{{ __('Date Acquired') }}</label>
-                <input id="date_acquired2" placeholder="YYYY-MM-DD" wire:model="date_acquired"  type="text" class="form-control @error('date_acquired') is-invalid @enderror" name="date_acquired" value="{{ old('date_acquired') }}" required autocomplete="date_acquired" autofocus>
-                @error('date_acquired')
+                <label for="year_acquired2" class="col-form-label text-md-end">{{ __('Year Acquired') }}</label>
+                <input id="year_acquired2" placeholder="YYY" wire:model="year_acquired"  type="text" class="form-control @error('year_acquired') is-invalid @enderror" name="year_acquired" value="{{ old('year_acquired') }}" required autocomplete="year_acquired" autofocus>
+                @error('year_acquired')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -85,6 +85,7 @@
                 <select wire:model="status" type="text" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" required autocomplete="status">
                     <option value="operational">Operational</option>
                     <option value="non-operational">Not Operational</option>
+                    <option value="not indicated">Not Indicated</option>
                 </select>
                 @error('provider')
                     <span class="invalid-feedback" role="alert">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\Barangay;
+use App\Models\Municipality;
 
 class PlayerController extends Controller
 {
@@ -39,16 +40,36 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        $barangay = Barangay::find($request->input('barangay_id'));
-        $address = $barangay->name.", ".$barangay->municipality->name.", ".$barangay->municipality->province->name;
-        $player = Player::create([
-            'name' => $request->input('name'),
-            'type' => $request->input('type'),
-            'address' => $address,
-            'description' => $request->input('description'),
-            'vc_segment' => $request->input('vc_segment'),
-            'barangay_id' => $request->input('barangay_id'),
-        ]);
+       
+        if($request->input('barangay_id') != -1){
+            $barangay = Barangay::find($request->input('barangay_id'));
+            $address = $barangay->name.", ".$barangay->municipality->name.", ".$barangay->municipality->province->name;
+            $player = Player::create([
+                'name' => $request->input('name'),
+                'type' => $request->input('type'),
+                'address' => $address,
+                'description' => $request->input('description'),
+                'vc_segment' => $request->input('vc_segment'),
+                'barangay_id' => $request->input('barangay_id'),
+                'municipality_id' => $request->input('municipality_id'),
+                'data_source' => $request->input('data_source'),
+            ]);
+        }else{
+            $municipality = Municipality::find($request->input('municipality_id'));
+            $address = $municipality->name.", ".$municipality->province->name;
+            $player = Player::create([
+                'name' => $request->input('name'),
+                'type' => $request->input('type'),
+                'address' => $address,
+                'description' => $request->input('description'),
+                'vc_segment' => $request->input('vc_segment'),
+                'barangay_id' => null,
+                'municipality_id' => $request->input('municipality_id'),
+                'data_source' => $request->input('data_source'),
+            ]);
+        }
+        
+        
 
         return redirect()->route('players.edit', ['player' => $player]);
     }
@@ -88,9 +109,36 @@ class PlayerController extends Controller
     {
         $player = Player::find($id);
 
-        $player->update($request->all());
-        $player->address = $player->address();
-        $player->save();
+        //$player->update($request->all());
+
+        
+        if($request->input('barangay_id') != -1){
+            $barangay = Barangay::find($request->input('barangay_id'));
+            $address = $barangay->name.", ".$barangay->municipality->name.", ".$barangay->municipality->province->name;
+            $player->update([
+                'name' => $request->input('name'),
+                'type' => $request->input('type'),
+                'address' => $address,
+                'description' => $request->input('description'),
+                'vc_segment' => $request->input('vc_segment'),
+                'barangay_id' => $request->input('barangay_id'),
+                'municipality_id' => $request->input('municipality_id'),
+                'data_source' => $request->input('data_source'),
+            ]);
+        }else{
+            $municipality = Municipality::find($request->input('municipality_id'));
+            $address = $municipality->name.", ".$municipality->province->name;
+            $player->update([
+                'name' => $request->input('name'),
+                'type' => $request->input('type'),
+                'address' => $address,
+                'description' => $request->input('description'),
+                'vc_segment' => $request->input('vc_segment'),
+                'municipality_id' => $request->input('municipality_id'),
+                'barangay_id' => null,
+                'data_source' => $request->input('data_source'),
+            ]);
+        }
         return redirect()->route('players.show', $id);
     }
 
