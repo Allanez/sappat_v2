@@ -10,7 +10,7 @@ class EquipmentForm extends Component
     public $player;
     public $common_name;
     public $quantity;
-    public $date_acquired;
+    public $year_acquired;
     public $provider;
     public $status;
     public $remarks;
@@ -29,7 +29,7 @@ class EquipmentForm extends Component
     public function resetFields(){
         $this->common_name = '';
         $this->quantity='';
-        $this->date_acquired='';
+        $this->year_acquired='';
         $this->provider='';
         $this->status='';
         $this->remarks='';
@@ -41,7 +41,7 @@ class EquipmentForm extends Component
         $equipment->player_id = $this->player->id;
         $equipment->common_name = $this->common_name;
         $equipment->quantity = $this->quantity;
-        $equipment->date_acquired = $this->date_acquired;
+        $equipment->year_acquired = $this->year_acquired;
         $equipment->provider = $this->provider;
         $equipment->status = $this->status;
         $equipment->remarks = $this->remarks;
@@ -55,6 +55,5 @@ class EquipmentForm extends Component
 
     public function mount(){
         $this->status = 'not indicated';
-        $this->date_acquired = date('Y-m-d');
     }
 }
