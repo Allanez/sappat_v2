@@ -4,26 +4,28 @@
             <div class="card-header">{{ __('Quick Filter') }}</div>
             <div class="card-body">
                 <h6><strong>By Product</strong></h6>
-                
-                @foreach($product_names as $product_name)
+           
+                @foreach($products as $product)
                 
                 <div class="form-check">
-                    <input class="form-check-input" wire:model="product_filter.{{$loop->index}}" type="checkbox" value="{{$product_name->common_name}}" id="flexCheckDefault.{{$loop->index}}" name="product_filter[]">
+                    <input class="form-check-input" wire:model="product_filter.{{$loop->index}}" type="checkbox" value="{{$product->common_name}}" id="flexCheckDefault.{{$loop->index}}" name="product_filter[]" />
                     <label class="form-check-label" for="flexCheckDefault.{{$loop->index}}">
-                        {{$product_name->common_name}}({{$product_name->hits}})
+                        {{$product->common_name}}({{$product->hits}})
                     </label>
                 </div>
                 @endforeach
                 
+                
                 <h6><strong>By Location</strong></h6>
                 @foreach($locations as $location)
                 <div class="form-check">
-                    <input class="form-check-input" wire:model="location_filter.{{$loop->index}}" type="checkbox" value="{{$location->location}}" id="flexCheckDefault.{{$loop->index}}">
+                    <input class="form-check-input" wire:model="location_filter.{{$loop->index}}" type="checkbox" value="{{$location->location}}" id="flexCheckDefault.{{$loop->index}}" />
                     <label class="form-check-label" for="flexCheckDefault.{{$loop->index}}">
                         {{$location->location}}({{$location->hits}})
                     </label>
                 </div>
                 @endforeach
+
                 <div>
                     <button type="submit" wire:click="reset_filter" class="btn btn-primary"> Reset</button>
                 </div>
@@ -31,7 +33,7 @@
         </div>
     </div>
     <div class="col-md-10">
-        <div class="row g-3 align-items-center">
+        <div class="row top5 g-2 align-items-center">
             <div class="col-2 form-floating">
             <label class="visually-hidden" for="search_field">Search Field</label>
             <select wire:model="search_field" id="search_field" class="form-select" aria-label="Default select example">
@@ -51,8 +53,10 @@
                 <button type="submit" class="btn btn-primary btn-lg">Search</button>
             </div>
         </div>
+        <div class="row top5">
+        {{ $players->links() }}
+        </div>
         <div class="row">
-            
             <ul class="search-results">
             @foreach ($players as $player)
                 <li>
@@ -81,12 +85,8 @@
                     </div>
                 </li>
             @endforeach
-            </ul>
-           
+            </ul>       
         </div>
-        <div class="row">
-        {{ $players->links()}}
-        </div>
-        
+        {{ $players->links() }}
     </div>
 </div>

@@ -18,6 +18,8 @@ class SearchPlayers extends Component
     public $product_filter = [];
     public $location_filter = [];
 
+    use WithPagination;
+
     protected $paginationTheme = 'bootstrap';
 
 
@@ -27,9 +29,6 @@ class SearchPlayers extends Component
 
         $this->product_filter = array_diff($this->product_filter, [false]);
         $this->location_filter = array_diff($this->location_filter, [false]);
-
-        $product_names = Product::all_products();
-        $locations = Municipality::with_players();
 
         #apply main search
         if($this->search_field == 'product_name')
@@ -51,7 +50,7 @@ class SearchPlayers extends Component
 
         if($this->product_filter){
             $players = $players->whereHas('products', function (Builder $query){
-                $query->whereIn('common_name', $this->product_filter);
+                $query->WhereIn('common_name', $this->product_filter);
             });
         }
 
@@ -62,9 +61,48 @@ class SearchPlayers extends Component
             }
         }
 
+        /*$product_names = Product::
+        ->groupBy('common_name')
+        ->select('common_name', DB::raw('count(*) as hits'))
+        ->orderByRaw('common_name, hits')
+        ->limit(10)
+        ->get();
+        */
+        $player_ids = $players->pluck('id');
+        
+        $products = Product::whereIn('player_id', $player_ids)
+        ->groupBy('common_name')
+        ->select('common_name', DB::raw('count(*) as hits'))
+        ->orderByRaw('common_name, hits')
+        ->limit(10)
+        ->get();
+
+        if($this->product_filter){
+            $product_name = end($this->product_filter);
+            $products = Product::whereIn('player_id', $player_ids)
+                ->where('common_name', '=', $product_name)
+                ->groupBy('common_name')
+                ->select('common_name', DB::raw('count(*) as hits'))
+                ->get();
+        }
+        
+        $locations = Municipality::with_players($player_ids);
+
         return view('livewire.search-players', ['players' => $players->paginate(10), 
-                'product_names' => $product_names,
+                'products' => $products,
                 'locations' => $locations]);
+    }
+
+    public function updatedProductFilter(){
+        $this->resetPage();
+    }
+
+    public function updatedSearchKey(){
+        $this->resetPage();
+    }
+
+    public function updatedLocationFilter(){
+        $this->resetPage();
     }
 
     public function reset_filter(){

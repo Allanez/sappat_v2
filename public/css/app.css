@@ -11433,3 +11433,11 @@ textarea.form-control-lg {
 .toggle-checkbox:checked + .toggle-label {
   background-color: #68D391;
 }
+
+.top5 {
+  margin-top: 5px;
+}
+
+.top10 {
+  margin-top: 10px;
+}

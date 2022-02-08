@@ -25,10 +25,11 @@ class Municipality extends Model
         return $this->morphMany('App\Models\Organization', 'geographic');
     }
 
-    public static function with_players(){
+    public static function with_players($player_ids){
         return DB::table('players')
             ->leftJoin('municipalities', 'players.municipality_id','=', 'municipalities.id')
             ->leftJoin('provinces', 'provinces.id','=','municipalities.province_id')
+            ->whereIn('players.id', $player_ids)
             ->select(DB::raw("concat(municipalities.name,', ',provinces.name) as location, count(*) as hits"))
             ->groupByRaw('municipalities.name, provinces.name')
             ->limit(10)
