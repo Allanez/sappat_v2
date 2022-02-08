@@ -15,7 +15,7 @@ class Product extends Model
     ];
 
     public static function all_products(){
-        $products = DB::table('products')->selectRaw('common_name, count(*) as hits')->groupBy('common_name')->limit(10)->get();
+        $products = DB::table('products')->selectRaw('common_name, count(*) as hits')->groupBy('common_name')->orderBy('common_name')->limit(10)->get();
         return $products;
     }
 }

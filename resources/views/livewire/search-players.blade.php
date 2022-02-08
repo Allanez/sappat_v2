@@ -16,24 +16,14 @@
                 @endforeach
                 
                 <h6><strong>By Location</strong></h6>
+                @foreach($locations as $location)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Tacloban, Leyte
+                    <input class="form-check-input" wire:model="location_filter.{{$loop->index}}" type="checkbox" value="{{$location->location}}" id="flexCheckDefault.{{$loop->index}}">
+                    <label class="form-check-label" for="flexCheckDefault.{{$loop->index}}">
+                        {{$location->location}}({{$location->hits}})
                     </label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Palo
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Borongan, Eastern Samar
-                    </label>
-                </div>
+                @endforeach
                 <div>
                     <button type="submit" wire:click="reset_filter" class="btn btn-primary"> Reset</button>
                 </div>
