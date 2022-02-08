@@ -9,6 +9,7 @@ use App\Models\Municipality;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 
 class SearchPlayers extends Component
 {
@@ -16,6 +17,8 @@ class SearchPlayers extends Component
     public $search_field = 'player_name';
     public $product_filter = [];
     public $location_filter = [];
+
+    protected $paginationTheme = 'bootstrap';
 
 
     public function render()
@@ -59,7 +62,7 @@ class SearchPlayers extends Component
             }
         }
 
-        return view('livewire.search-players', ['players' => $players->get(), 
+        return view('livewire.search-players', ['players' => $players->paginate(2), 
                 'product_names' => $product_names,
                 'locations' => $locations]);
     }

@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-md-2">
         <div class="card">
-            <div class="card-header">{{ __('Filter') }}</div>
+            <div class="card-header">{{ __('Quick Filter') }}</div>
             <div class="card-body">
                 <h6><strong>By Product</strong></h6>
                 
@@ -52,6 +52,7 @@
             </div>
         </div>
         <div class="row">
+            
             <ul class="search-results">
             @foreach ($players as $player)
                 <li>
@@ -81,6 +82,11 @@
                 </li>
             @endforeach
             </ul>
+           
         </div>
+        <div class="row">
+        {{ $players->links()}}
+        </div>
+        
     </div>
 </div>
