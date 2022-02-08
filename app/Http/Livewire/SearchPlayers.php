@@ -62,7 +62,7 @@ class SearchPlayers extends Component
             }
         }
 
-        return view('livewire.search-players', ['players' => $players->paginate(2), 
+        return view('livewire.search-players', ['players' => $players->paginate(10), 
                 'product_names' => $product_names,
                 'locations' => $locations]);
     }
