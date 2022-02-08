@@ -36,11 +36,26 @@
                     <div class="row player-details">
                         <div><label> <strong>Location:</strong> </label> {{$player->address()}}</div>
                         <div><label> <strong>Products:</strong> </label> 
+                            @if($player->products()->count()==0)
+                                <span>No registered products!</span>
+                            @endif
                             @foreach($player->products()->get() as $product)
                                 @if(!$loop->last)
                                     {{$product->common_name}},
                                 @else
                                     {{$product->common_name}}
+                                @endif
+                            @endforeach
+                        </div>
+                        <div><label> <strong>Equipment/Technology:</strong> </label> 
+                            @if($player->equipments()->count()==0)
+                                <span>No registered equipments!</span>
+                            @endif
+                            @foreach($player->equipments()->get() as $equipment)
+                                @if(!$loop->last)
+                                    {{$equipment->common_name}},
+                                @else
+                                    {{$equipment->common_name}}
                                 @endif
                             @endforeach
                         </div>
