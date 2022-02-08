@@ -70,8 +70,22 @@
             <!-- Email -->
             <div class="mb-3">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" wire:model.defer="state.email" />
+                <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" wire:model.defer="state.email" name="agency" />
                 <x-jet-input-error for="email" />
+            </div>
+
+            <!-- Agency -->
+            <div class="mb-3">
+                <x-jet-label for="agency" value="{{ __('Agency') }}" />
+                <x-jet-input id="agency" type="text" class="{{ $errors->has('agency') ? 'is-invalid' : '' }}" wire:model.defer="state.agency" name="designation"/>
+                <x-jet-input-error for="agency" />
+            </div>
+
+            <!-- Designation -->
+            <div class="mb-3">
+                <x-jet-label for="designation" value="{{ __('Designation') }}" />
+                <x-jet-input id="designation" type="text" class="{{ $errors->has('designation') ? 'is-invalid' : '' }}" wire:model.defer="state.designation" />
+                <x-jet-input-error for="designation" />
             </div>
         </div>
     </x-slot>

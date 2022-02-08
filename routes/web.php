@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\Admin\ManageUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::resource('players', PlayerController::class);
+
+Route::get('/admin/users', [ManageUserController::class, 'index'])->name('users');

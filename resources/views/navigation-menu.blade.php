@@ -12,8 +12,36 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
                 <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                    {{ __('sAPPat') }}
+                    {{ __('Search') }}
                 </x-jet-nav-link>
+
+                <x-jet-dropdown id="playersDropdown">
+                    <x-slot name="trigger">
+                        
+                            Data Management
+                        
+                    </x-slot>
+
+                    <x-slot name="content">
+
+                        <h6 class="dropdown-header small text-muted">
+                            {{ __('Manage Users') }}
+                        </h6>
+
+                        <x-jet-dropdown-link href="{{ route('users') }}">
+                            {{ __('Users Dashboard') }}
+                        </x-jet-dropdown-link>
+                        <hr class="dropdown-divider">
+                        <h6 class="dropdown-header small text-muted">
+                            {{ __('Manage Players') }}
+                        </h6>
+
+                        <x-jet-dropdown-link href="{{ route('players.create') }}">
+                            {{ __('Add Player') }}
+                        </x-jet-dropdown-link>
+                    </x-slot>
+
+                </x-jet-dropdown>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -62,25 +90,6 @@
 
                 <!-- Settings Dropdown -->
                 @auth
-                    <x-jet-dropdown id="playersDropdown">
-                        <x-slot name="trigger">
-                            
-                                Data Management
-                          
-                        </x-slot>
-
-                        <x-slot name="content">
-                        <h6 class="dropdown-header small text-muted">
-                                {{ __('Manage Players') }}
-                            </h6>
-
-                            <x-jet-dropdown-link href="{{ route('players.create') }}">
-                                {{ __('Add Player') }}
-                            </x-jet-dropdown-link>
-                        </x-slot>
-
-                    </x-jet-dropdown>
-                    
                     <x-jet-dropdown id="settingsDropdown">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())

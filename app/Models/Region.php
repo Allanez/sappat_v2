@@ -12,4 +12,8 @@ class Region extends Model
     public function provinces(){
         return $this->hasMany(Province::class);
     }
+
+    public function organizations(){
+        return $this->morphMany('App\Models\Organization', 'geographic');
+    }
 }

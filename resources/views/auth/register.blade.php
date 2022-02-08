@@ -27,6 +27,22 @@
                 </div>
 
                 <div class="mb-3">
+                    <x-jet-label value="{{ __('Agency/Organization') }}" />
+
+                    <x-jet-input class="{{ $errors->has('agency') ? 'is-invalid' : '' }}" type="text" name="agency"
+                                 :value="old('agency')" required />
+                    <x-jet-input-error for="agency"></x-jet-input-error>
+                </div>
+
+                <div class="mb-3">
+                    <x-jet-label value="{{ __('Designation') }}" />
+
+                    <x-jet-input class="{{ $errors->has('designation') ? 'is-invalid' : '' }}" type="text" name="designation"
+                                 :value="old('designation')" required />
+                    <x-jet-input-error for="designation"></x-jet-input-error>
+                </div>
+
+                <div class="mb-3">
                     <x-jet-label value="{{ __('Password') }}" />
 
                     <x-jet-input class="{{ $errors->has('password') ? 'is-invalid' : '' }}" type="password"

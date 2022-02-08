@@ -11424,3 +11424,12 @@ textarea.form-control-lg {
   background-color: yellow;
   color: black;
 }
+
+.toggle-checkbox:checked {
+  right: 0;
+  border-color: #68D391;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #68D391;
+}

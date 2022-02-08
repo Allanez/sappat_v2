@@ -2,27 +2,19 @@
     <div class="col-md-2">
         <div class="card">
             <div class="card-header">{{ __('Filter') }}</div>
-
             <div class="card-body">
                 <h6><strong>By Product</strong></h6>
+                
+                @foreach($product_names as $product_name)
+                
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        fresh bangus
+                    <input class="form-check-input" wire:model="product_filter.{{$loop->index}}" type="checkbox" value="{{$product_name->common_name}}" id="flexCheckDefault.{{$loop->index}}" name="product_filter[]">
+                    <label class="form-check-label" for="flexCheckDefault.{{$loop->index}}">
+                        {{$product_name->common_name}}({{$product_name->hits}})
                     </label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        canned bangus
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        bangus sardines
-                    </label>
-                </div>
+                @endforeach
+                
                 <h6><strong>By Location</strong></h6>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -43,7 +35,7 @@
                     </label>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary"> Apply</button>
+                    <button type="submit" wire:click="reset_filter" class="btn btn-primary"> Reset</button>
                 </div>
             </div>
         </div>
@@ -75,7 +67,7 @@
                 <li>
                     <div class="search-item">
                         <div class="player-name">
-                            <a href="{{route('players.show', $player->id)}}">{{$player->name}}</a> from <strong>{{$player->address()}}</strong> 
+                            <a href="{{route('players.show', $player->id)}}">{{$player->name}}</a> from <strong>{{$player->address}}</strong> 
                         </div>
                         <div class="player-segment {{$player->vc_segment}}">
                             {{$player->vc_segment}}

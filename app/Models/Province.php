@@ -16,4 +16,8 @@ class Province extends Model
     public function municipalities(){
         return $this->hasMany(Municipality::class);
     }
+    
+    public function organizations(){
+        return $this->morphMany('App\Models\Organization', 'geographic');
+    }
 }
