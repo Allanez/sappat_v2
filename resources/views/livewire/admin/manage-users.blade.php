@@ -40,7 +40,7 @@
                 </td>
                 <td>
                     <button data-bs-toggle="modal" data-bs-target="#UserRoleModal" class="btn btn-primary btn-sm">Permissions</button>
-                    <button wire:click="showDeleteUserModal" class="btn btn-danger btn-sm">Delete</button>
+                    <button wire:click="showDeleteUserModal({{$user->id}})" class="btn btn-danger btn-sm">Delete</button>
                 </td>
             </tr>
             @endforeach
@@ -61,7 +61,7 @@
                 Nevermind
             </x-jet-secondary-button>
 
-            <x-jet-danger-button class="ml-2" wire:click="delete({{ $user->id }})" wire:loading.attr="disabled">
+            <x-jet-danger-button class="ml-2" wire:click="delete()" wire:loading.attr="disabled">
                 Delete Account
             </x-jet-danger-button>
         </x-slot>
