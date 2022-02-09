@@ -4,7 +4,6 @@
             <div class="card-header">{{ __('Quick Filter') }}</div>
             <div class="card-body">
                 <h6><strong>By Product</strong></h6>
-           
                 @foreach($products as $product)
                 
                 <div class="form-check">
@@ -19,7 +18,7 @@
                 <h6><strong>By Location</strong></h6>
                 @foreach($locations as $location)
                 <div class="form-check">
-                    <input class="form-check-input" wire:model="location_filter.{{$loop->index}}" type="checkbox" value="{{$location->location}}" id="flexCheckDefault.{{$loop->index}}" />
+                    <input class="form-check-input" wire:model="location_filter.{{$loop->index}}" type="checkbox" value="{{$location->location}}" id="flexCheckDefault.{{$loop->index}}" name="location_filter[]" />
                     <label class="form-check-label" for="flexCheckDefault.{{$loop->index}}">
                         {{$location->location}}({{$location->hits}})
                     </label>
@@ -52,6 +51,7 @@
             <div class="col-2">
                 <button type="submit" class="btn btn-primary btn-lg">Search</button>
             </div>
+       
         </div>
         <div class="row top5">
         {{ $players->links() }}

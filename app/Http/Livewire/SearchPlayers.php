@@ -10,6 +10,7 @@ use App\Models\Municipality;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
+use Illuminate\Session\SessionManager;
 
 class SearchPlayers extends Component
 {
@@ -95,18 +96,47 @@ class SearchPlayers extends Component
 
     public function updatedProductFilter(){
         $this->resetPage();
+        session()->put('product_filter', $this->product_filter);
     }
 
     public function updatedSearchKey(){
         $this->resetPage();
+        session()->put("search_key", $this->search_key);
     }
 
     public function updatedLocationFilter(){
         $this->resetPage();
+        session()->put('location_filter', $this->location_filter);
+    }
+
+    public function updatedSearchField(){
+        $this->resetPage();
+        session()->put('search_field', $this->search_field);
     }
 
     public function reset_filter(){
-        $this->product_filter = [];
-        $this->location_filter = [];
+        $this->reset('product_filter');
+        $this->reset('location_filter');
+        $this->reset('search_key');
     }
+
+    public function mount(SessionManager $session){
+     
+        if($session->get('search_key')){
+            $this->search_key = $session->get("search_key");
+        }
+
+        if($session->get('search_field')){
+            $this->search_field = $session->get("search_field");
+        }
+
+        if($session->get('location_filter')){
+            $this->location_filter = $session->get("location_filter");
+        }
+
+        if($session->get('product_filter')){
+            $this->product_filter = $session->get("product_filter");
+        }
+    }
+
 }
