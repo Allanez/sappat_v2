@@ -14,8 +14,8 @@
             <tr>
             <th scope="row">{{$loop->index}}</th>
             <td>{{$product->common_name}}</td>
-            <td>Piece</td>
-            <td>100</td>
+            <td>Data Not Available</td>
+            <td>Data Not Available</td>
             <td>
                 <button data-bs-toggle="modal" data-bs-target="#updateProductModal" wire:click="edit({{ $product->id }})" class="btn btn-primary btn-sm">Edit</button>
                 <button wire:click="delete({{ $product->id }})" class="btn btn-danger btn-sm">Delete</button>

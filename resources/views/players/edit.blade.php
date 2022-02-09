@@ -6,7 +6,7 @@
     </x-slot>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header"><h4>{{ __('Update Player\'s Profile')}} - {{$player->name }}</h4></div>
 
@@ -149,7 +149,7 @@
                             @livewire('product-form', ['player'=> $player])
                             @livewire('show-player-products', ['player' => $player])
                         </div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Not yet supported!</div>
 
                         <div class="tab-pane fade" id="equipment" role="tabpanel" aria-labelledby="equipment-tab">
                             <div class="row mt-3 justify-content-end">

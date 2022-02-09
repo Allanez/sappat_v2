@@ -49,7 +49,7 @@
             </div>
 
             <div class="col-2">
-                <button type="submit" class="btn btn-primary btn-lg">Search</button>
+                <button type="submit" wire:click="reset_filter" class="btn btn-primary btn-lg">Reset Filter</button>
             </div>
        
         </div>

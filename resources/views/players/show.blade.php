@@ -59,20 +59,23 @@
                                 @endif
                             @endforeach
                         </div>
-                        <p>
-                            {{$player->description}}
-                        </p>
-                        <div><label> <strong>Data Sources:</strong> </label> {{$player->data_source}}</div>
+                        <div>
+                            <label><strong>Other Details:</strong></label>
+                            <p>
+                                {{$player->description}}
+                            </p>
+                        </div>
+                        <div><label><strong>Data Sources:</strong> </label>{{$player->data_source}}</div>
                     </div>
                     <div class="row business-relationships mt-5">
                         <h5>Business Relationships</h5>
                         <hr>
                         <div class="business-partner">
-                            <a href=""><h6>Business Name</a></h6>
+                            <a href=""><h6>Business Name (Dummy Data)</a></h6>
                             <p><span class="player-segment input">Input</span> Small fry, fingerlings, feeds</p>
                         </div>
                         <div class="business-partner">
-                            <a href=""><h6>Business Name</a></h6>
+                            <a href=""><h6>Business Name (Dummy Data)</a></h6>
                             <p><span class="player-segment processor">Processor</span> Small fry, fingerlings, feeds</p>
                         </div>
                     </div>
