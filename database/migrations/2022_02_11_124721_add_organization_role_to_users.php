@@ -28,7 +28,8 @@ class AddOrganizationRoleToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('organization_id');
+            $table->dropForeign(['organization_id']);
+            $table->dropColumn('organization_id');
             $table->dropColumn('role');
         });
     }
