@@ -70,6 +70,7 @@
                         </div>
                         <div><label><strong>Data Sources:</strong> </label>{{$player->data_source}}</div>
                     </div>
+                    <!--
                     <div class="row business-relationships mt-5">
                         <h5>Business Relationships</h5>
                         <hr>
@@ -82,6 +83,7 @@
                             <p><span class="player-segment processor">Processor</span> Small fry, fingerlings, feeds</p>
                         </div>
                     </div>
+                    -->
                 </div>
             </div>
             </div>

@@ -12,8 +12,8 @@ class ManageUsers extends Component
     public $assigningUserPermission = false;
     public $user_id;
 
-    public $role;
-    public $organization;
+    public $role="viewer";
+    public $organization=1;
 
     public function render()
     {
