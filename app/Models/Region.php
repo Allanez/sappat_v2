@@ -16,4 +16,8 @@ class Region extends Model
     public function organizations(){
         return $this->morphMany('App\Models\Organization', 'geographic');
     }
+
+    public function full_name(){
+        return $this->name;
+    }
 }

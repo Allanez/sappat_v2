@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Player;
 use App\Models\Barangay;
 use App\Models\Municipality;
@@ -80,9 +81,13 @@ class PlayerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $player = Player::find($id);
+        if($request->user()->cannot('view', $player)){
+            abort(403, "You are unauthorized to view the details of this player.");
+        }
+
         return view('players/show', ['player'=>$player]);
     }
 
@@ -92,9 +97,12 @@ class PlayerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $player = Player::find($id);
+        if($request->user()->cannot('update', $player)){
+            abort(403, "You are unauthorized to perform this action.");
+        }
         return view('players/edit', ['player'=> $player]);
     }
 
@@ -109,8 +117,10 @@ class PlayerController extends Controller
     {
         $player = Player::find($id);
 
-        //$player->update($request->all());
-
+        $player = Player::find($id);
+        if($request->user()->cannot('update', $player)){
+            abort(403, "You are unauthorized to perform this action.");
+        }
         
         if($request->input('barangay_id') != -1){
             $barangay = Barangay::find($request->input('barangay_id'));

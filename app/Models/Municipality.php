@@ -22,7 +22,7 @@ class Municipality extends Model
         return $this->hasMany(Player::class);
     }
     public function organizations(){
-        return $this->morphMany('App\Models\Organization', 'geographic');
+        return $this->morphMany(Organization::class, 'geographic');
     }
 
     public static function with_players($player_ids){
@@ -34,5 +34,9 @@ class Municipality extends Model
             ->groupByRaw('municipalities.name, provinces.name')
             ->limit(10)
             ->get();
+    }
+
+    public function full_name(){
+       return $this->name.", ".$this->province->full_name();
     }
 }

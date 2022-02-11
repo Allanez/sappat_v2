@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAgencyDesignationToUsers extends Migration
+class AddSuperAdminToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddAgencyDesignationToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('agency');
-            $table->string('designation');
+            $table->boolean('super_admin')->default('0');
         });
     }
 
@@ -27,8 +26,7 @@ class AddAgencyDesignationToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('agency');
-            $table->dropColumn('designation');
+            $table->dropColumn('super_admin');
         });
     }
 }

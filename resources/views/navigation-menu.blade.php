@@ -14,7 +14,6 @@
                 <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                     {{ __('Search') }}
                 </x-jet-nav-link>
-
                 <x-jet-dropdown id="playersDropdown">
                     <x-slot name="trigger">
                         
@@ -23,7 +22,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-
+                        @can('manage-users')
                         <h6 class="dropdown-header small text-muted">
                             {{ __('Manage Users') }}
                         </h6>
@@ -32,13 +31,16 @@
                             {{ __('Users Dashboard') }}
                         </x-jet-dropdown-link>
                         <hr class="dropdown-divider">
+                        @endcan
+                        
+                        @can('create', App\Models\Player::class)
                         <h6 class="dropdown-header small text-muted">
                             {{ __('Manage Players') }}
                         </h6>
-
                         <x-jet-dropdown-link href="{{ route('players.create') }}">
                             {{ __('Add Player') }}
                         </x-jet-dropdown-link>
+                        @endcan
                     </x-slot>
 
                 </x-jet-dropdown>

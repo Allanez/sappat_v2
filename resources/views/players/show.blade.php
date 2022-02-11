@@ -19,11 +19,14 @@
                         <div class="col-md-4">
                             <h4>{{ __('Player Profile') }} </h4>
                         </div>
+
+                        @can('update', $player)
                         <div class="col-md-2">
                             <a href="{{route('players.edit', $player->id)}}" class="btn btn-success">
                                 {{ __('Edit Player') }}
                             </a>
                         </div>
+                        @endcan
                     </div>
                     
                 </div>

@@ -14,8 +14,15 @@ class AddressInput extends Component
     public $province;
     public $municipality;
     public $barangay_id;
-
+    public $political_level = 'barangay';
     public $player;
+
+    protected $listeners = [
+        'politicalLevelUpdated' => 'updatePoliticalLevel',
+        'provinceUpdated' => 'updateProvince',
+        'regionUpdated' => 'updateRegion',
+        'municipalityUpdated' => 'updateMunicipality'    
+    ];
 
     public function render()
     {
@@ -58,5 +65,38 @@ class AddressInput extends Component
             $this->region = $municipality->province->region->id;
             $this->barangay_id = -1;
         }
+    }
+
+    public function updatePoliticalLevel($political_level){
+        $this->political_level = $political_level;
+    }
+
+    /**
+     * The following functions are used to push state changes from this 
+     * component to its parent component. Parent components who wants
+     * to listen should add the following events to their listeners
+     */
+    public function updatedRegion(){
+        $this->emit('regionUpdated', $this->region);
+    }
+
+    public function updatedProvince(){
+        $this->emit('provinceUpdated', $this->province);
+    }
+
+    public function updatedMunicipality(){
+        $this->emit('municipalityUpdated', $this->municipality);
+    }
+
+    public function updateRegion($region){
+        $this->region = $region;
+    }
+
+    public function updateProvince($province){
+        $this->province = $province;
+    }
+
+    public function updateMunicipality($municipality){
+        $this->municipality = $municipality;
     }
 }

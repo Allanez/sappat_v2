@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAgencyDesignationToUsers extends Migration
+class AlterRegionNameInRegions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddAgencyDesignationToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('agency');
-            $table->string('designation');
+        Schema::table('regions', function (Blueprint $table) {
+            $table->renameColumn('region_name', 'name');
         });
     }
 
@@ -26,9 +25,8 @@ class AddAgencyDesignationToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('agency');
-            $table->dropColumn('designation');
+        Schema::table('regions', function (Blueprint $table) {
+            $table->renameColumn('name', 'region_name');
         });
     }
 }

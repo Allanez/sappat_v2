@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAgencyDesignationToUsers extends Migration
+class AddOrganizationRoleToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,9 @@ class AddAgencyDesignationToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('agency');
-            $table->string('designation');
+            $table->unsignedBigInteger('organization_id')->nullable();
+            $table->foreign('organization_id')->references('id')->on('organizations');
+            $table->enum('role', ['administrator', 'manager', 'contributor', 'viewer']);
         });
     }
 
@@ -27,8 +28,8 @@ class AddAgencyDesignationToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('agency');
-            $table->dropColumn('designation');
+            $table->dropForeign('organization_id');
+            $table->dropColumn('role');
         });
     }
 }

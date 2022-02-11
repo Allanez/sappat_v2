@@ -17,8 +17,9 @@ class CreateOrganizationsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
+            $table->string('email')->nullable();
             $table->enum('political_level', ['municipal', 'provincial', 'regional', 'national']);
-            $table->morphs('geographic');
+            $table->nullableMorphs('geographic');
         });
     }
 
