@@ -15,7 +15,7 @@ class SqlFileSeeder extends Seeder
     public function run()
     {
 
-        $path = base_path().'/database/seeders/ph-barangay-seed/location.sql';
+        $path = base_path().'/database/seeders/ph-barangay-seed/sappat_db12012022.sql';
         $sql = file_get_contents($path);
         DB::unprepared($sql);
     }
